@@ -1,0 +1,17 @@
+[Unit]
+Description=Node Metrics Agent
+After=network.target nginx.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/vps-node
+ExecStart=/usr/bin/python3 /opt/vps-node/agent.py
+Restart=always
+RestartSec=5
+StandardOutput=append:/opt/vps-node/agent.log
+StandardError=append:/opt/vps-node/agent.log
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
